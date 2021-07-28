@@ -1,0 +1,8 @@
+{
+   "port": 5000,
+   "mongoURI": "mongodb+srv://test:19970618yfhenj@cluster0.ywvfr.mongodb.net/chat?retryWrites=true&w=majority",
+   "jwtSecret": "Che",
+   "SENDGRID_API_KEY": "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",
+   "EMAIL_FROM": "nodejs-test@che",
+   "BASE_URL": "http://localhost:3000/"
+}
