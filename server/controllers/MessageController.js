@@ -28,10 +28,10 @@ class MessageController {
 
                 res.json(messages)
             } else {
-                res.status(401).json({ message: 'Не зарегистрирован' })
+                res.status(401).json({ message: 'Not registered' })
             }
         } catch (e) {
-            res.status(500).json({ message: 'Что то пошло не так, попробуйте снова' })
+            res.status(500).json({ message: 'Something went wrong, please try again' })
         }
     }
 
@@ -54,10 +54,10 @@ class MessageController {
                 this.io.emit('MESSAGE:NEW', { dialogId: dialog, message: message, newMessagesCount })
                 res.json(message)
             } else {
-                res.status(401).json({ message: 'Не зарегистрирован' })
+                res.status(401).json({ message: 'Not registered' })
             }
         } catch (e) {
-            res.status(500).json({ message: 'Что то пошло не так, попробуйте снова' })
+            res.status(500).json({ message: 'Something went wrong, please try again' })
         }
     }
 
@@ -72,10 +72,10 @@ class MessageController {
                 this.io.emit('MESSAGE:UPDATE_IS_READ', { dialogId, messagesIds: [messageId], messageUserId })
                 res.json({ message: 'Статус изменен' })
             } else {
-                res.status(401).json({ message: 'Не зарегистрирован' })
+                res.status(401).json({ message: 'Not registered' })
             }
         } catch (e) {
-            res.status(500).json({ message: 'Что то пошло не так, попробуйте снова' })
+            res.status(500).json({ message: 'Something went wrong, please try again' })
         }
     }
 }

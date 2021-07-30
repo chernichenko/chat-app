@@ -27,7 +27,7 @@ class UserController {
          if (!errors.isEmpty()) {
             return res.status(400).json({
                errors: errors.array(),
-               message: 'Некорректные данные при регистрации'
+               message: 'Incorrect registration data'
             })
          }
    
@@ -36,11 +36,11 @@ class UserController {
          const candidate = await User.findOne({ email: email })
    
          if (candidate) {
-            return res.status(400).json({ message: 'Такой пользователь уже существует' })
+            return res.status(400).json({ message: 'This user already exists' })
          }
    
          if (!name) {
-            return res.status(400).json({ message: 'Имя не может быть пустым' })
+            return res.status(400).json({ message: 'The name cannot be empty' })
          }
    
          const hashedPassword = await bcrypt.hash(password, 12)
@@ -62,10 +62,10 @@ class UserController {
          await user.save() 
          await transporter.sendMail(regEmail(email)) 
    
-         res.status(201).json({ message: 'Пользователь создан' })
+         res.status(201).json({ message: 'User has been created' })
 
       } catch (error) {
-         res.status(500).json({ message: 'Что то пошло не так, попробуйте снова' })
+         res.status(500).json({ message: 'Something went wrong, please try again' })
       }
    }
 
@@ -76,7 +76,7 @@ class UserController {
          if (!errors.isEmpty()) {
             return res.status(400).json({
                errors: errors.array(),
-               message: 'Некорректные данные при входе в систему'
+               message: 'Incorrect login data'
             })
          }
    
@@ -85,13 +85,13 @@ class UserController {
          const user = await User.findOne({ email: email })
    
          if (!user) {
-            return res.status(400).json({ message: 'Пользователь не найден' })
+            return res.status(400).json({ message: 'User is not found' })
          }
    
          const isMatch = await bcrypt.compare(password, user.password)
    
          if (!isMatch) {
-            return res.status(400).json({ message: 'Неверный пароль, попробуйте снова' })
+            return res.status(400).json({ message: 'Invalid password, please try again' })
          }
    
          // Генерація токену на основі userId 
@@ -106,7 +106,7 @@ class UserController {
          res.json(userResponser) 
    
       } catch (e) {
-         res.status(500).json({ message: 'Что то пошло не так, попробуйте снова' })
+         res.status(500).json({ message: 'Something went wrong, please try again' })
       } 
    }
 
@@ -114,12 +114,12 @@ class UserController {
       try {
          if (req.user) {
             this.io.emit('USER:UPDATE_STATUS', { userId: req.user.userId, isOnline: false })
-            res.json({ message: 'Запрос на изменение статуса отправлен' })
+            res.json({ message: 'Status change request has been sent' })
          } else {
-            res.status(401).json({ message: 'Не зарегистрирован' })
+            res.status(401).json({ message: 'Not registered' })
          }
       } catch (e) {
-         res.status(500).json({ message: 'Что то пошло не так, попробуйте снова' })
+         res.status(500).json({ message: 'Something went wrong, please try again' })
       }
    }
 
@@ -127,7 +127,7 @@ class UserController {
       try {
          crypto.randomBytes(32, async (err, buffer) => {
             if (err) {
-               res.status(500).json({ message: 'Что то пошло не так, попробуйте снова' })
+               res.status(500).json({ message: 'Something went wrong, please try again' })
             }
    
             const token = buffer.toString('hex')
@@ -138,9 +138,9 @@ class UserController {
                candidate.resetTokenExp = Date.now() + 60 * 60 * 1000
                await candidate.save()
                await transporter.sendMail(resetEmail(candidate.email, token))
-               res.status(201).json({ message: 'Проверьте Ваш почтовый ящик' })
+               res.status(201).json({ message: 'Check your email' })
             } else {
-               res.status(400).json({ message: 'Пользователя с таким email не существует' })
+               res.status(400).json({ message: 'User with this email does not exist' })
             }
          })
       } catch(e) {
@@ -160,12 +160,12 @@ class UserController {
             user.resetToken = undefined
             user.resetTokenExp = undefined
             await user.save()
-            res.status(201).json({ message: 'Пароль изменен' })
+            res.status(201).json({ message: 'Password changed' })
          } else {
-            res.status(400).json({ message: 'Пользователь не найден' })
+            res.status(400).json({ message: 'User is not found' })
          }
       } catch (e) {
-         console.log(e)
+         res.status(500).json({ message: 'Something went wrong, please try again' })
       }
    }
 
@@ -179,10 +179,10 @@ class UserController {
             this.io.emit('USER:UPDATE_STATUS', { userId, isOnline: true })
             res.json(user)
          } else {
-            res.status(401).json({ message: 'Не зарегистрирован' })
+            res.status(401).json({ message: 'Not registered' })
          }
       } catch (e) {
-         res.status(500).json({ message: 'Что то пошло не так, попробуйте снова' })
+         res.status(500).json({ message: 'Something went wrong, please try again' })
       }
    }
 }

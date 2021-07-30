@@ -29,10 +29,10 @@ class DialogController {
                 this.io.emit('MESSAGE:UPDATE_IS_READ', { dialogId: dialog._id, messagesIds, messageUserId: ID2 })
                 res.json(dialog)
             } else {
-                res.status(401).json({ message: 'Не зарегистрирован' })
+                res.status(401).json({ message: 'Not registered' })
             }
         } catch (e) {
-            res.status(500).json({ message: 'Что то пошло не так, попробуйте снова' })
+            res.status(500).json({ message: 'Something went wrong, please try again' })
         }
     }
 
@@ -64,10 +64,10 @@ class DialogController {
 
                 res.json(dialogs)
             } else {
-                res.status(401).json({ message: 'Не зарегистрирован' })
+                res.status(401).json({ message: 'Not registered' })
             }
         } catch (e) {
-            res.status(500).json({ message: 'Что то пошло не так, попробуйте снова' })
+            res.status(500).json({ message: 'Something went wrong, please try again' })
         }
     }
 }

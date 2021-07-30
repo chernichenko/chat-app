@@ -11,4 +11,5 @@ mongoose.connect(
       useCreateIndex: true 
    }
 )
+
 mongoose.connection.once('open', () => { console.log('Connect to database!') })

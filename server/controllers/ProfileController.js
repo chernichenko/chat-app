@@ -20,12 +20,12 @@ class ProfileController {
                await user.save()
             }
             
-            res.json({ message: 'Данные изменены', avatarUrl: user.avatarUrl })
+            res.json({ message: 'Data changed', avatarUrl: user.avatarUrl })
          } else {
-            res.status(401).json({ message: 'Не зарегистрирован'})
+            res.status(401).json({ message: 'Not registered'})
          }
       } catch (e) {
-         res.status(500).json({ message: 'Что то пошло не так, попробуйте снова' })
+         res.status(500).json({ message: 'Something went wrong, please try again' })
       }
    }
 }

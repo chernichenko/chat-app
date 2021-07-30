@@ -7,10 +7,7 @@ const UserSchema = new Schema({
    avatarUrl: String,
    resetToken: String,
    resetTokenExp: Date,
-   lastSeen: {
-      type: Date,
-      default: new Date(),
-   },
+   lastSeen: { type: Date, default: new Date() },
 })
 
 UserSchema.virtual("isOnline").get(function () {
