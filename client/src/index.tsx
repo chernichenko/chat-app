@@ -4,14 +4,17 @@ import store from 'redux/store'
 import { BrowserRouter } from 'react-router-dom'
 import ErrorBoundary from 'app/ErrorBoundary'
 import App from 'app/App'
+import { Toast } from 'components'
 
 import 'assets/default/styles.scss'
+import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.render(
   <Provider store={store}>
     <ErrorBoundary>
       <BrowserRouter>
         <App />
+        <Toast />
       </BrowserRouter>
     </ErrorBoundary>
   </Provider>,

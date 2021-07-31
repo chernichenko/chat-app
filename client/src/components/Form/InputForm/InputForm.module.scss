@@ -1,0 +1,33 @@
+@import 'assets/default/vars.scss';
+
+.inputWrapper {
+    margin-bottom: 20px;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background: $black;
+    border: 1px solid white;
+    outline: none;
+    color: white;
+    &.file {
+        display: none;
+    }
+}
+
+.label {
+    color: white;
+}
+
+.error {
+    border: 1px solid red;
+    color: red;
+}
+
+.errorMessage {
+    font-size: 14px;
+    color: red;
+    margin-top: 10px;
+}

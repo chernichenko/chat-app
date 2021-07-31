@@ -1,0 +1,11 @@
+@import 'assets/default/vars.scss';
+
+.button {
+    background: $blue;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}

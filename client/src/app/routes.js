@@ -21,6 +21,7 @@ export const publicRoutes = [
   },
   {
     path: '/password',
+    exact: true,
     component: ChangePassword,
   },
   {

@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-import thunkMiddleware from 'redux-thunk'
 import rootReducer from './rootReducer'
+import thunkMiddleware from 'redux-thunk'
+import { webSocket } from 'middleware'
 
 export default configureStore({
   reducer: rootReducer,
-  middleware: [thunkMiddleware],
+  middleware: [thunkMiddleware, webSocket()],
   devTools: true,
 })
