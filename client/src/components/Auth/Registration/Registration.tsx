@@ -1,6 +1,8 @@
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { Form, Formik } from 'formik'
 import * as Yup from 'yup'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 import { InputForm, Button } from 'components'
 
 import styles from '../Auth.module.scss'
@@ -20,8 +22,22 @@ const validationSchema = () => {
 }
 
 export const Registration = () => {
+    const history = useHistory()
 
-    const onSubmit = () => {}
+    const onSubmit = async (values: any) => {
+        let formData = new FormData()
+        for (let key in values) {
+            formData.append(key, values[key])
+        }
+
+        try {
+            await axios.post('/api/auth/register', formData)
+            toast('Registration completed successfully')
+            history.push(`/`)
+        } catch (e) {
+            toast.error(e.message)
+        }
+    }
 
     return (
         <div className={styles.wrap}>

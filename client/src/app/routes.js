@@ -8,6 +8,7 @@ import {
   Main,
   Profile,
 } from 'components'
+import { MainLayout } from 'layouts'
 
 export const publicRoutes = [
   {
@@ -38,10 +39,17 @@ export const privateRoutes = [
     path: '/',
     exact: true,
     component: Main,
+    layout: MainLayout,
+  },
+  {
+    path: '/dialog/:userToId',
+    component: Main,
+    layout: MainLayout,
   },
   {
     path: '/profile',
     component: Profile,
+    layout: MainLayout,
   },
   {
     path: '/pageNotFound',

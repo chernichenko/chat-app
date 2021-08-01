@@ -8,13 +8,15 @@ const regEmail = require('../emails/registraion')
 const resetEmail = require('../emails/reset')
 const crypto = require('crypto')
 const nodemailer = require('nodemailer')
-const sendgrid = require('nodemailer-sendgrid-transport')
 const { saveFile } = require('../utils/utils')
 
-const transporter = nodemailer.createTransport(sendgrid({
-   auth: {api_key: config.get('SENDGRID_API_KEY')}
-}))
-
+const transporter = nodemailer.createTransport({
+   service: "hotmail",
+   auth: {
+      user: "alexchernichenko18@outlook.com",
+      pass: "alex18chernichenko"
+   }
+})
 class UserController {
    constructor(io) {
       this.io = io
@@ -60,7 +62,11 @@ class UserController {
          }
 
          await user.save() 
-         await transporter.sendMail(regEmail(email)) 
+         await transporter.sendMail(regEmail(email), err => {
+            if (err) {
+               return
+            }
+         }) 
    
          res.status(201).json({ message: 'User has been created' })
 
@@ -137,7 +143,11 @@ class UserController {
                candidate.resetToken = token
                candidate.resetTokenExp = Date.now() + 60 * 60 * 1000
                await candidate.save()
-               await transporter.sendMail(resetEmail(candidate.email, token))
+               await transporter.sendMail(resetEmail(candidate.email, token), err => {
+                  if (err) {
+                     return
+                  }
+               }) 
                res.status(201).json({ message: 'Check your email' })
             } else {
                res.status(400).json({ message: 'User with this email does not exist' })

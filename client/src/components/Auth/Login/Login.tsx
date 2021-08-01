@@ -1,8 +1,12 @@
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 import { Form, Formik } from 'formik'
 import * as Yup from 'yup'
+import axios from 'axios'
 import { InputForm, Button } from 'components'
+import { changeUser } from 'redux/reducers/userSlice'
+import { SAVE_STATE } from 'redux/actions'
 
 import styles from '../Auth.module.scss'
 
@@ -18,14 +22,15 @@ const validationSchema = () => {
 }
 
 export const Login = () => {
+    const dispatch = useDispatch()
 
-    const onSubmit = (values: any) => {
-        // const { email, password } = values;
-
+    const onSubmit = async (values: any) => {
         try {
-            
+            const { data } = await axios.post('/api/auth/login', values)
+            dispatch(changeUser(data))
+            dispatch({ type: SAVE_STATE })
         } catch(e) {
-            toast.error(e)
+            toast.error(e.message)
         }
     }
 

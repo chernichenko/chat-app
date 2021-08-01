@@ -3,7 +3,7 @@ const config = require('config')
 module.exports = function(email) {
    return {
       to: email,
-      from: config.get('EMAIL_FROM'),
+      from: 'alexchernichenko18@outlook.com',
       subject: 'Account was created',
       html: `
          <h1>Hello!</h1>

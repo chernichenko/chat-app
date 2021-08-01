@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import rootReducer from './rootReducer'
 import thunkMiddleware from 'redux-thunk'
-import { webSocket } from 'middleware'
+import { webSocket, saveState } from 'middleware'
+import { loadState } from 'utils/localStorage'
 
 export default configureStore({
   reducer: rootReducer,
-  middleware: [thunkMiddleware, webSocket()],
+  middleware: [thunkMiddleware, saveState, webSocket()],
   devTools: true,
+  preloadedState: loadState(),
 })

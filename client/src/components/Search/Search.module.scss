@@ -1,3 +1,32 @@
+@import 'assets/default/vars.scss';
+
 .wrap {
-    margin: 0px;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    input {
+        width: 100%;
+        height: 40px;
+        background: $black;
+        border: 1px solid white;
+        outline: none;
+        color: white;
+        padding: 10px;
+    }
+}
+
+.search {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+
+    img {
+        width: 16px;
+        height: auto;
+    }
 }

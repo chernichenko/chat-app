@@ -1,6 +1,8 @@
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { Form, Formik } from 'formik'
 import * as Yup from 'yup'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 import { InputForm, Button } from 'components'
 
 import styles from '../Auth.module.scss'
@@ -14,8 +16,17 @@ const validationSchema = () => {
 }
 
 export const ChangePassword = () => {
+    const history = useHistory()
 
-    const onSubmit = () => {}
+    const onSubmit = async (values: any) => {
+        try {
+            const { data }: any = await axios.post('/api/auth/reset', values)
+            toast(data.message)
+            history.push(`/`)
+        } catch(e) {
+            toast.error(e.message)
+        }
+    }
 
     return (
         <div className={styles.wrap}>

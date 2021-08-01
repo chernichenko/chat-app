@@ -3,7 +3,7 @@ const config = require('config')
 module.exports = function(email, token) {
    return {
       to: email,
-      from: config.get('EMAIL_FROM'),
+      from: 'alexchernichenko18@outlook.com',
       subject: 'Reset password',
       html: `
          <h1>Your foggot password?</h1>
