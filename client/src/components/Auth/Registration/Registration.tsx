@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { Form, Formik } from 'formik'
 import * as Yup from 'yup'
@@ -24,11 +25,16 @@ const validationSchema = () => {
 export const Registration = () => {
     const history = useHistory()
 
+    const [file, setFile] = useState<any>()
+
     const onSubmit = async (values: any) => {
+        delete values.file
         let formData = new FormData()
         for (let key in values) {
             formData.append(key, values[key])
         }
+
+        formData.append('file', file)
 
         try {
             await axios.post('/api/auth/register', formData)
@@ -69,6 +75,7 @@ export const Registration = () => {
                             <InputForm
                                 name={'file'}
                                 type={'file'}
+                                onFileChange={setFile}
                             />
                             <Button
                                 onClick={handleSubmit}

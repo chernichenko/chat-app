@@ -33,7 +33,7 @@ export const Header = () => {
                         <img src={user.avatarUrl} />  
                     </div>
                 )}
-                <p>Chat</p>
+                <p>{user.name}</p>
             </div>
             <div className={styles.nav}>
                 <NavLink to="/">Dialogs</NavLink>
