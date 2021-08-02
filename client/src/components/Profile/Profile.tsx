@@ -9,6 +9,7 @@ import axios from 'axios'
 import { InputForm, Button } from 'components'
 import { changeUser } from 'redux/reducers/userSlice'
 import { SAVE_STATE } from 'redux/actions'
+import { getUser } from 'redux/selectors'
 
 import authStyles from 'components/Auth/Auth.module.scss'
 import styles from './Profile.module.scss'
@@ -24,15 +25,15 @@ const validationSchema = () => {
 export const Profile = () => {
     const history = useHistory()
     const dispatch = useDispatch()
-    const user = useSelector((s: any) => s.user)
+    const { token, name } = useSelector(getUser)
 
     const [file, setFile] = useState<any>()
 
     const config = useMemo(() => ({
         headers: {
-            "auth": `Che ${user.token}`,
+            "auth": `Che ${token}`,
         }
-    }), [user.token])
+    }), [token])
 
     const onSubmit = async (values: any) => {
         try {
@@ -53,7 +54,7 @@ export const Profile = () => {
     return (
         <div className={cn(authStyles.wrap, styles.wrap)}>
             <Formik
-                initialValues={{ name: user.name, file: '' }}
+                initialValues={{ name: name, file: '' }}
                 validationSchema={validationSchema}
                 onSubmit={onSubmit}
             >

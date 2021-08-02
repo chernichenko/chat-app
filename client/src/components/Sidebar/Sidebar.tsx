@@ -5,14 +5,15 @@ import { toast } from 'react-toastify'
 import { Search, DialogItem } from 'components'
 import { changeDialogs } from 'redux/reducers/dialogsSlice'
 import { getFormatedTime } from 'utils/date'
+import { getUser, getDialogs } from 'redux/selectors'
 
 import styles from './Sidebar.module.scss'
 
 export const Sidebar = () => {
     const dispact = useDispatch()
-    const user = useSelector((s: any) => s.user)
-    const dialogs = useSelector((s: any) => s.dialogs.dialogs)
-    const config = useMemo(() => ({ headers: { auth: `Che ${user.token}` } }), [user.token])
+    const { token } = useSelector(getUser)
+    const { dialogs } = useSelector(getDialogs)
+    const config = useMemo(() => ({ headers: { auth: `Che ${token}` } }), [token])
 
     const [dialogsState, setDialogsState] = useState([])
 
@@ -22,7 +23,7 @@ export const Sidebar = () => {
                 const response = await axios.get(`/api/dialogs/sidebar`, config)
                 const dialogsResponse = response.data
                 dispact(changeDialogs(dialogsResponse))
-            } catch (e) { toast(e.message) }
+            } catch (e) { toast.error(e.message) }
         }
         
         getDialogs()

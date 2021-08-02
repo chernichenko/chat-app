@@ -5,15 +5,16 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import { clearUserInfo } from 'redux/reducers/userSlice'
 import { SAVE_STATE } from 'redux/actions'
+import { getUser } from 'redux/selectors'
 
 import styles from './Header.module.scss'
 
 export const Header = () => {
     const history = useHistory()
     const dispatch = useDispatch()
-    const user = useSelector((s: any) => s.user)
+    const { token, name, avatarUrl } = useSelector(getUser)
 
-    const config = useMemo(() => ({ headers: { auth: `Che ${user.token}` } }), [user.token])
+    const config = useMemo(() => ({ headers: { auth: `Che ${token}` } }), [token])
 
     const logoutHandler = useCallback(async (e: any) => {
         try {
@@ -22,18 +23,18 @@ export const Header = () => {
             dispatch(clearUserInfo())
             dispatch({ type: SAVE_STATE })
             history.push('/')
-        } catch (e) { toast(e.message) }
+        } catch (e) { toast.error(e.message) }
     }, [config])
 
     return (
         <div className={styles.header}>
             <div className={styles.logo}>
-                {!!user.avatarUrl && (
+                {!!avatarUrl && (
                     <div className={styles.imageWrap}>
-                        <img src={user.avatarUrl} />  
+                        <img src={avatarUrl} />  
                     </div>
                 )}
-                <p>{user.name}</p>
+                <p>{name}</p>
             </div>
             <div className={styles.nav}>
                 <NavLink to="/">Dialogs</NavLink>

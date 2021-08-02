@@ -4,22 +4,23 @@ import { Switch, Route } from 'react-router-dom'
 import { publicRoutes, privateRoutes } from './routes'
 import { CONNECT_WEBSOCKET } from 'constants/socket'
 import { RouteWrapper } from 'layouts'
+import { getUser } from 'redux/selectors'
 
 import styles from './App.module.scss' 
 
 const App = () => {
   const dispatch = useDispatch()
-  const userId = useSelector((s: any) => s.user.id)
+  const { id } = useSelector(getUser)
 
-  const [isPublickRoutes, setIsPublickRoutes] = useState(!userId)
+  const [isPublickRoutes, setIsPublickRoutes] = useState(!id)
 
   useEffect(() => {
     dispatch({ type: CONNECT_WEBSOCKET })
   }, [])
 
   useEffect(() => {
-    setIsPublickRoutes(!userId)
-  }, [userId])
+    setIsPublickRoutes(!id)
+  }, [id])
 
   const publicRoutesRender = useMemo(() => publicRoutes.map((route, i) => (
     <Route key={i} {...route} />
