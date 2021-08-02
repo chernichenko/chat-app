@@ -153,9 +153,7 @@ class UserController {
                res.status(400).json({ message: 'User with this email does not exist' })
             }
          })
-      } catch(e) {
-         console.log(e)
-      }
+      } catch(e) { }
    }
 
    resetFinished = async (req, res) => {

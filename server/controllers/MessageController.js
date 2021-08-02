@@ -40,27 +40,18 @@ class MessageController {
             if (req.user) {
                 const { text, dialog } = req.body
 
-                console.log(1)
-
                 const message = new Message({ text, dialog, user: req.user.userId, isRead: false })
 
-                console.log(2)
                 const dialogFromDB = await Dialog.findOne({ _id: dialog })
                 dialogFromDB.lastMessage = message._id
 
-                console.log(3)
                 await dialogFromDB.save()
-                console.log(4)
                 await message.save()
-                console.log(5)
                 
                 const messagesNotRead = await Message.find({ dialog, isRead: false })
-                console.log(6)
                 const newMessagesCount = messagesNotRead.length
-                console.log(7)
 
                 this.io.emit('MESSAGE:NEW', { dialogId: dialog, message: message, newMessagesCount })
-                console.log(8)
                 res.json(message)
             } else {
                 res.status(401).json({ message: 'Not registered' })

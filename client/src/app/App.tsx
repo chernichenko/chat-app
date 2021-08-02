@@ -6,7 +6,7 @@ import { CONNECT_WEBSOCKET } from 'constants/socket'
 import { RouteWrapper } from 'layouts'
 import { getUser } from 'redux/selectors'
 
-import styles from './App.module.scss' 
+import styles from './App.module.scss'
 
 const App = () => {
   const dispatch = useDispatch()

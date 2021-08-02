@@ -1,9 +1,8 @@
 const express = require('express')
-const config = require('config')
 const createRoutes = require('./core/routes')
 const path = require('path')
 const createSocket = require('./core/socket')
-const PORT = config.get('port') || 5000
+const PORT = 5000
 require('./core/db')
 global.rootPath = path.resolve(__dirname)
 
