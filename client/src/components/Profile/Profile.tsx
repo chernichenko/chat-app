@@ -22,6 +22,11 @@ const validationSchema = () => {
     })
 }
 
+type submitValues = {
+    readonly name: string
+    readonly file: any
+}
+
 export const Profile = () => {
     const history = useHistory()
     const dispatch = useDispatch()
@@ -35,7 +40,7 @@ export const Profile = () => {
         }
     }), [token])
 
-    const onSubmit = async (values: any) => {
+    const onSubmit = async (values: submitValues) => {
         try {
             let formData = new FormData()
             formData.append('name', values.name)

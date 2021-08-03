@@ -1,6 +1,6 @@
 import tinycolor from "tinycolor2"
 
-const getCorrectIndex = number => {
+const getCorrectIndex = (number: number) => {
   if (number > 255) {
     return 255
   }
@@ -10,7 +10,7 @@ const getCorrectIndex = number => {
   return number
 }
 
-const generateHash = hash => {
+const generateHash = (hash: string) => {
   const [r, g, b] = hash
     .substr(0, 3)
     .split("")

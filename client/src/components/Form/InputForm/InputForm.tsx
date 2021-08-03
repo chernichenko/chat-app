@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import { Field } from 'formik'
 import cn from 'classnames'
 

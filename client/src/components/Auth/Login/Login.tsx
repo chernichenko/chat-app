@@ -21,10 +21,15 @@ const validationSchema = () => {
     })
 }
 
+type submitValues = {
+    readonly email: string
+    readonly password: string
+}
+
 export const Login = () => {
     const dispatch = useDispatch()
 
-    const onSubmit = async (values: any) => {
+    const onSubmit = async (values: submitValues) => {
         try {
             const { data } = await axios.post('/api/auth/login', values)
             dispatch(changeUser(data))

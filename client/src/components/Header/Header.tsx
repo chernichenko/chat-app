@@ -27,7 +27,7 @@ export const Header = () => {
     }, [config])
 
     return (
-        <div className={styles.header}>
+        <div className={styles.header} data-testid="header">
             <div className={styles.logo}>
                 {!!avatarUrl && (
                     <div className={styles.imageWrap}>

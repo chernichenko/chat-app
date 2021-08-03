@@ -9,7 +9,7 @@ interface IMainLayout {
 
 export const MainLayout: FC<IMainLayout> = ({ children }) => {
     return (
-        <div className={styles.wrap}>
+        <div className={styles.wrap} data-testid="main-layout">
             <Header />
             {children}
         </div>

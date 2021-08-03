@@ -1,5 +1,7 @@
 import { FC } from 'react'
-import { Route } from 'react-router-dom'
+import { Route, useHistory } from 'react-router-dom'
+
+import styles from './Layouts.module.scss'
 
 interface IRouteWrapper {
     readonly component: any
@@ -13,6 +15,13 @@ export const RouteWrapper: FC<IRouteWrapper> = ({
     layout: Layout,
     ...rest
 }) => {
+    const history = useHistory();
+
+    if (!rest.path) {
+        history.push('/')
+        return <div className={styles.preloader} data-testid="preloader" />
+    }
+    
     return (
         <Route {...rest} render={(props) =>
             <Layout {...props}>

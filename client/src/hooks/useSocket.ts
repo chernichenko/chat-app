@@ -9,9 +9,9 @@ import io from "socket.io-client"
 
 export const useSocket = () => {
     const dispatch = useDispatch()
-    const user = useSelector(getUser)
-    const { dialogs } = useSelector(getDialogs)
-    const { dialogId, messages, userTo } = useSelector(getDialog)
+    const user: any = useSelector(getUser)
+    const { dialogs }: any = useSelector(getDialogs)
+    const { dialogId, messages, userTo }: any = useSelector(getDialog)
 
     const config = useMemo(() => ({ headers: { auth: `Che ${user.token}` } }), [user.token])
 
@@ -23,9 +23,9 @@ export const useSocket = () => {
         socket.on('MESSAGE:UPDATE_IS_READ', data => setIsReadRefreshDataState(data))
     }, [])
 
-    const [userStatusRefreshDataState, setUserStatusRefreshDataState] = useState()
-    const [messageNewRefreshDataState, setMessageNewRefreshDataState] = useState()
-    const [isReadRefreshDataState, setIsReadRefreshDataState] = useState()
+    const [userStatusRefreshDataState, setUserStatusRefreshDataState] = useState<any>()
+    const [messageNewRefreshDataState, setMessageNewRefreshDataState] = useState<any>()
+    const [isReadRefreshDataState, setIsReadRefreshDataState] = useState<any>()
 
     useEffect(() => {
         if (userStatusRefreshDataState) {
@@ -34,7 +34,7 @@ export const useSocket = () => {
                 dispatch(changeUserTo(userToUpdated))
             }
 
-            const newDialogs = dialogs.map(dialog => {
+            const newDialogs = dialogs.map((dialog: any) => {
                 if (userStatusRefreshDataState.userId === dialog.userTo._id) {
                     return {
                         ...dialog,
@@ -67,7 +67,7 @@ export const useSocket = () => {
                 dispatch({ type: SAVE_STATE })
             }
 
-            const newDialogs = dialogs.map(dialog => {
+            const newDialogs = dialogs.map((dialog: any) => {
                 if (socketDialogId === dialog._id) {
                     const newMessagesCount = user.id === socketMessage.user ? 0 : socketMessagesCount
                     return { ...dialog, lastMessage: socketMessage, newMessagesCount }
@@ -88,8 +88,8 @@ export const useSocket = () => {
             const socketMessagesIds = isReadRefreshDataState.messagesIds
 
             if (socketDialogId === dialogId) {
-                const newMessages = messages.map(message => {
-                    if (socketMessagesIds.find(messageId => messageId === message._id)) return { ...message, isRead: true }
+                const newMessages = messages.map((message: any) => {
+                    if (socketMessagesIds.find((messageId: any) => messageId === message._id)) return { ...message, isRead: true }
                     return message
                 })
                 dispatch(changeMessages(newMessages))

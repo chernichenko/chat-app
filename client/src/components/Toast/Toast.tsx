@@ -11,7 +11,8 @@ export const Toast = () => {
         rtl={false}
         pauseOnFocusLoss
         draggable
-        pauseOnHover 
+        pauseOnHover
+        date-testid="toast"
       />
    )
 }

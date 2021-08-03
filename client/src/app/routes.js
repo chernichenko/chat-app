@@ -1,6 +1,5 @@
 import { Redirect } from 'react-router-dom'
 import {
-  NotFound,
   Login,
   Registration,
   ChangePassword,
@@ -43,19 +42,17 @@ export const privateRoutes = [
   },
   {
     path: '/dialog/:userToId',
+    exact: true,
     component: Main,
     layout: MainLayout,
   },
   {
     path: '/profile',
+    exact: true,
     component: Profile,
     layout: MainLayout,
   },
   {
-    path: '/pageNotFound',
-    component: NotFound,
-  },
-  {
-    component: () => <Redirect to="/pageNotFound" />,
+    component: () => <Redirect to="/" />,
   },
 ]

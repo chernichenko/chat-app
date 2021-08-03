@@ -1,6 +1,6 @@
 import { SAVE_STATE } from 'redux/actions'
 
-export const saveState = ({ getState }) => next => action => {
+export const saveState = ({ getState }: any) => (next: any) => (action: any) => {
     next(action)
 
     if (action.type !== SAVE_STATE) {

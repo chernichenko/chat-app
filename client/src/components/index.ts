@@ -1,4 +1,3 @@
-export * from './NotFound'
 export * from './Auth/Login'
 export * from './Auth/Registration'
 export * from './Auth/ChangePassword'

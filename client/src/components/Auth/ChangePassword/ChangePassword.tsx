@@ -15,10 +15,14 @@ const validationSchema = () => {
     })
 }
 
+type submitValue = {
+    readonly email: string
+}
+
 export const ChangePassword = () => {
     const history = useHistory()
 
-    const onSubmit = async (values: any) => {
+    const onSubmit = async (values: submitValue) => {
         try {
             const { data }: any = await axios.post('/api/auth/reset', values)
             toast(data.message)

@@ -10,7 +10,7 @@ import styles from '../Dialog.module.scss'
 export const Messages = () => {
     const messagesRef = useRef<any>()
     const user = useSelector(getUser)
-    const { messages, userTo } = useSelector(getDialog)
+    const { messages, userTo }: any = useSelector(getDialog)
 
     useEffect(() => {
         if (messagesRef.current) {
