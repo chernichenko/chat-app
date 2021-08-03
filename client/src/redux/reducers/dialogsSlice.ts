@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 export const initialState = {
-    dialogs: '',
+    dialogs: [],
 }
 
 const dialogsSlice = createSlice({

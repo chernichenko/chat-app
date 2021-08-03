@@ -10,7 +10,7 @@ const getCorrectIndex = number => {
   return number
 }
 
-export default hash => {
+const generateHash = hash => {
   const [r, g, b] = hash
     .substr(0, 3)
     .split("")
@@ -27,3 +27,5 @@ export default hash => {
       .toHexString()
   }
 }
+
+export default generateHash

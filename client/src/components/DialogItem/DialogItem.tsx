@@ -1,5 +1,3 @@
-// import check from 'assets/icons/check.svg'
-// import noCheck from 'assets/icons/no-check.svg'
 import { useMemo, FC } from 'react'
 import { NavLink } from "react-router-dom"
 import generateGradient from 'utils/color'
@@ -64,7 +62,7 @@ export const DialogItem: FC<IDialogItem> = ({
             </div>
           ) : (
             !!newMessagesCount ? (
-              <div className={styles.messageSount}>{newMessagesCount}</div>
+              <div className={styles.messageCount}>{newMessagesCount}</div>
             ) : (
               <></>
             )

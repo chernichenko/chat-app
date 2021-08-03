@@ -31,7 +31,7 @@ export const Header = () => {
             <div className={styles.logo}>
                 {!!avatarUrl && (
                     <div className={styles.imageWrap}>
-                        <img src={avatarUrl} />  
+                        <img src={avatarUrl} alt="avatar" />  
                     </div>
                 )}
                 <p>{name}</p>

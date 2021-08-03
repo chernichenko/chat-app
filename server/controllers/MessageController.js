@@ -64,13 +64,13 @@ class MessageController {
     setIsReadStatus = async (req, res) => {
         try {
             if (req.user) {
-                const { dialogId, messageId, messageUserId } = req.query
-                await Message.update(
+                const { dialogId, messageId, messageUserId } = req.body
+                await Message.updateOne(
                     { "_id": messageId },
                     { "$set": { "isRead": true } }
                 )
-                this.io.emit('MESSAGE:UPDATE_IS_READ', { dialogId, messagesIds: [messageId], messageUserId })
-                res.json({ message: 'Статус изменен' })
+                this.io.emit('MESSAGE:UPDATE_IS_READ', { dialogId: dialogId, messagesIds: [messageId], messageUserId: messageUserId })
+                res.json({ message: 'Status has been changed' })
             } else {
                 res.status(401).json({ message: 'Not registered' })
             }

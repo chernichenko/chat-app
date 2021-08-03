@@ -5,10 +5,12 @@ import { publicRoutes, privateRoutes } from './routes'
 import { CONNECT_WEBSOCKET } from 'constants/socket'
 import { RouteWrapper } from 'layouts'
 import { getUser } from 'redux/selectors'
+import { useSocket } from 'hooks'
 
 import styles from './App.module.scss'
 
 const App = () => {
+  useSocket()
   const dispatch = useDispatch()
   const { id } = useSelector(getUser)
 

@@ -1,26 +1,32 @@
-import { FC } from 'react'
+import { useEffect, useRef } from 'react'
+import { useSelector } from 'react-redux'
+import { getUser, getDialog } from 'redux/selectors'
 import { getFormatedTime } from 'utils/date'
 import generateGradient from 'utils/color'
 import { Message } from '../Message'
 
 import styles from '../Dialog.module.scss'
 
-interface IMessages {
-    readonly messages: any[]
-    readonly userFrom: any
-    readonly userTo: any
-}
+export const Messages = () => {
+    const messagesRef = useRef<any>()
+    const user = useSelector(getUser)
+    const { messages, userTo } = useSelector(getDialog)
 
-export const Messages: FC<IMessages> = ({ messages, userFrom, userTo }) => {
+    useEffect(() => {
+        if (messagesRef.current) {
+            messagesRef.current.scrollTop = messagesRef.current.scrollHeight
+        }
+    }, [messages])
+
     return (
-        <div id="messages" className={styles.messages}>
+        <div ref={messagesRef} className={styles.messages}>
             {messages?.length
                 ? (
-                    messages.map((message, index) => {
-                        const isMe = userFrom.id.toString() === message.user.toString()
-                        const avatarUrl = isMe ? userFrom.avatarUrl : userTo.avatarUrl
-                        const userName = isMe ? userFrom.name : userTo.name
-                        const colorObj = generateGradient(isMe ? userFrom.id : userTo._id)
+                    messages.map((message: any, index: number) => {
+                        const isMe = user.id.toString() === message.user.toString()
+                        const avatarUrl = isMe ? user.avatarUrl : userTo.avatarUrl
+                        const userName = isMe ? user.name : userTo.name
+                        const colorObj = generateGradient(isMe ? user.id : userTo._id)
 
                         return (
                             <Message
@@ -36,7 +42,7 @@ export const Messages: FC<IMessages> = ({ messages, userFrom, userTo }) => {
                         )
                     })
                 ) : (
-                    <span className={styles.noMessages}>Сообищений пока нет.</span>
+                    <span className={styles.noMessages}>There are no messages.</span>
                 )
             }
         </div>
