@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Header } from 'components'
 
-import styles from './Layouts.module.scss'
+import styles from '../Layouts.module.scss'
 
 interface IMainLayout {
     readonly children: JSX.Element

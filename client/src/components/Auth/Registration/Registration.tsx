@@ -28,7 +28,6 @@ export const Registration = () => {
     const [file, setFile] = useState<any>()
 
     const onSubmit = async (values: any) => {
-        delete values.file
         let formData = new FormData()
         for (let key in values) {
             formData.append(key, values[key])
@@ -46,7 +45,7 @@ export const Registration = () => {
     }
 
     return (
-        <div className={styles.wrap}>
+        <div className={styles.wrap} data-testid="registration">
             <Formik
                 initialValues={{ name: '', email: '', password: '', file: '' }}
                 validationSchema={validationSchema}

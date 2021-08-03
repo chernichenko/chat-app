@@ -33,7 +33,7 @@ export const ChangePassword = () => {
     }
 
     return (
-        <div className={styles.wrap}>
+        <div className={styles.wrap} data-testid="change-password">
             <Formik
                 initialValues={{ email: '' }}
                 validationSchema={validationSchema}

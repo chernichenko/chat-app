@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from 'redux/store'
 import { RouteWrapper } from './RouteWrapper'
-import { MainLayout } from './MainLayout'
+import { MainLayout } from '../MainLayout'
 
 describe('RouteWrapper', () => {
   it('Should RouteWrapper render preloader if there is no path', () => {
@@ -28,7 +28,6 @@ describe('RouteWrapper', () => {
   })
 
   it('Should RouteWrapper render some routes', () => {
-
     const testComponent = () => <div data-testid="test-component" />
     const testLayout = MainLayout
     const testPath = '/some/test/path'

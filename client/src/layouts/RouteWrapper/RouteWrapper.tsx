@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Route, useHistory } from 'react-router-dom'
 
-import styles from './Layouts.module.scss'
+import styles from '../Layouts.module.scss'
 
 interface IRouteWrapper {
     readonly component: any

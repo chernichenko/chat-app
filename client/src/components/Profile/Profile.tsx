@@ -57,7 +57,7 @@ export const Profile = () => {
     }
 
     return (
-        <div className={cn(authStyles.wrap, styles.wrap)}>
+        <div className={cn(authStyles.wrap, styles.wrap)} data-testid="profile">
             <Formik
                 initialValues={{ name: name, file: '' }}
                 validationSchema={validationSchema}

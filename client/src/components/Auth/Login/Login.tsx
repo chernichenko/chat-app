@@ -40,7 +40,7 @@ export const Login = () => {
     }
 
     return (
-        <div className={styles.wrap}>
+        <div className={styles.wrap} data-testid="login">
             <Formik
                 initialValues={{ email: '', password: '' }}
                 validationSchema={validationSchema}
