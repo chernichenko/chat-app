@@ -7,9 +7,9 @@ interface ITop {
    readonly userTo: any; 
 }
 
-export const Top: FC<ITop> = ({ userTo }) => {
+export const Top: FC<ITop> = ({ userTo = {} }) => {
    return (
-      <div className={styles.top}>
+      <div className={styles.top} data-testid="top">
          <div className={styles.inner}>
             <div className={styles.name}>{userTo.name}</div>
             <div className={styles.status}>

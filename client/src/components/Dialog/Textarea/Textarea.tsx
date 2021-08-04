@@ -39,6 +39,7 @@ export const Textarea: FC<ITextArea> = ({ dialogId }) => {
          if (value) {
             await axios.post(`/api/message/`, { text: value, dialog: dialogId }, config)
             setValue('')
+            setIsEmojiOpen(false)
          }
       } catch (e) {
          toast.error(e.message)
@@ -46,7 +47,7 @@ export const Textarea: FC<ITextArea> = ({ dialogId }) => {
    }
 
    return (
-      <div className={styles.textarea}>
+      <div className={styles.textarea} data-testid="textarea">
          {isEmojiOpen
             ? (
                <div className={styles.emoji}>
@@ -56,19 +57,22 @@ export const Textarea: FC<ITextArea> = ({ dialogId }) => {
                   />
                </div>
             ) : (
-               <div className={styles.emojiButton}>
-                  <img src={smileSvg} alt="" onClick={() => setIsEmojiOpen(true)} />
+               <div
+                  className={styles.emojiButton}
+                  onClick={() => setIsEmojiOpen(true)}
+               >
+                  <img src={smileSvg} alt="" />
                </div>
             )
          }
          <div className={styles.inputWrap}>
             <input
-               placeholder="Введите текст сообщения…"
+               placeholder="Enter message text"
                value={value}
                onChange={e => setValue(e.target.value)}
                onKeyDown={keyHandler}
             />
-            <div className={styles.send} onClick={sendHandler}>
+            <div className={styles.send} onClick={sendHandler} data-testid="send-message">
                <img src={sendSvg} alt="" />
             </div>
          </div>

@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { Field } from 'formik'
 import cn from 'classnames'
 
@@ -48,6 +48,7 @@ export const InputForm: FC<IInputFormProps> = ({
               placeholder={placeholder}
               {...field}
               onChange={isFile ? onFileChangeHandler : field.onChange}
+              data-testid="form-input"
             />
             {isFile && (
               <label className={styles.label} htmlFor={'file'}>

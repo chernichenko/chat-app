@@ -56,7 +56,7 @@ export const Dialog = () => {
     }
 
     return (
-        <div className={styles.wrap}>
+        <div className={styles.wrap} data-testid="dialog">
             <Top userTo={userTo} />
             {messages && (
                 <Messages />

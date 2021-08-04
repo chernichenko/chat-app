@@ -19,7 +19,11 @@ export const Messages = () => {
     }, [messages])
 
     return (
-        <div ref={messagesRef} className={styles.messages}>
+        <div
+            ref={messagesRef}
+            className={styles.messages}
+            data-testid="messages"
+        >
             {messages?.length
                 ? (
                     messages.map((message: any, index: number) => {

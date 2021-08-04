@@ -21,6 +21,7 @@ export const Button: FC<IButtonProps> = ({ children, isPrimary = true, onClick, 
             onClick={onClick}
             disabled={disabled}
             type={type}
+            data-testid="button"
         >
             {children}
         </button>

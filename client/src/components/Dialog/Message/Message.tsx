@@ -15,13 +15,21 @@ interface IMessage {
    readonly colorObj: any
 }
 
-export const Message: FC<IMessage> = ({ text, avatarUrl, userName, isMe, isRead, time, colorObj }) => {
+export const Message: FC<IMessage> = ({
+   text,
+   avatarUrl,
+   userName = 'No name',
+   isMe,
+   isRead,
+   time,
+   colorObj = {}
+}) => {
    return (
-      <div className={cn(styles.message, isMe && styles.me )}>
+      <div className={cn(styles.message, isMe && styles.me )} data-testid="message">
          <div className={styles.avatar}>
             {avatarUrl 
                ? (
-                  <img src={avatarUrl} alt=""/>
+                  <img src={avatarUrl} alt="" data-testid="avatar" />
                ) : (
                   <div 
                      className={styles.noAvatar}

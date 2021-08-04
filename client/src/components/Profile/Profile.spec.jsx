@@ -24,7 +24,6 @@ describe('Profile', () => {
 
   it('Should Profile form work correctly', async () => {
     const testName = 'Test Name'
-    const testFile = new File(['(⌐□_□)'], 'file.xml', { type: 'application/xml' })
 
     render(
       <BrowserRouter>
