@@ -8,7 +8,7 @@ interface ISearch {
     readonly setDialogs: any
 }
 
-export const Search: FC<ISearch> = ({ initialDialogs, setDialogs }) => {
+export const Search: FC<ISearch> = ({ initialDialogs = [], setDialogs = () => {} }) => {
     const [search, setSearch] = useState('')
 
     const changeHandler = useCallback((e: any) => {
@@ -32,7 +32,7 @@ export const Search: FC<ISearch> = ({ initialDialogs, setDialogs }) => {
     }, [initialDialogs])
 
     return (
-        <div className={styles.wrap}>
+        <div className={styles.wrap} data-testid="search">
             <input
                 placeholder="Enter user name"
                 type="text"

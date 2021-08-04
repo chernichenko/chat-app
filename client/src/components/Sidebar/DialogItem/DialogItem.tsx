@@ -20,7 +20,7 @@ export const DialogItem: FC<IDialogItem> = ({
   userToId,
   avatar,
   isOnline,
-  name,
+  name = 'No name',
   lastMessage,
   time,
   isMe,
@@ -30,7 +30,7 @@ export const DialogItem: FC<IDialogItem> = ({
   const { color, colorLighten } = useMemo(() => generateGradient(userToId), [userToId])
 
   return (
-    <NavLink className={styles.itemWrap} to={`/dialog/${userToId}`}>
+    <NavLink className={styles.itemWrap} to={`/dialog/${userToId}`} data-testid="dialog-item">
       <div className={styles.item}>
         <div className={styles.column1}>
           <div className={styles.avatarWrap}>
@@ -54,20 +54,22 @@ export const DialogItem: FC<IDialogItem> = ({
           <div className={styles.name}>{name}</div>
           <div className={styles.message}><span>{lastMessage}</span></div>
         </div>
-        {lastMessage && <div className={styles.column3}>
-          <div className={styles.time}>{time}</div>
-          {isMe ? (
-            <div className={styles.messageStatus}>
-              <img src={isRead ? 'check' : 'noCheck'} alt="" />
-            </div>
-          ) : (
-            !!newMessagesCount ? (
-              <div className={styles.messageCount}>{newMessagesCount}</div>
+        {lastMessage && (
+          <div className={styles.column3}>
+            <div className={styles.time}>{time}</div>
+            {isMe ? (
+              <div className={styles.messageStatus}>
+                <img src={isRead ? 'check' : 'noCheck'} alt="" />
+              </div>
             ) : (
-              <></>
-            )
-          )}
-        </div>}
+              !!newMessagesCount ? (
+                <div className={styles.messageCount}>{newMessagesCount}</div>
+              ) : (
+                <></>
+              )
+            )}
+          </div>
+        )}
       </div>
     </NavLink>
   )

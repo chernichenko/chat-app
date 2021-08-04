@@ -34,7 +34,7 @@ export const Sidebar = () => {
     }, [dialogs])
 
     return (
-        <div className={styles.wrap}>
+        <div className={styles.wrap} data-testid="sidebar">
             <Search initialDialogs={dialogs} setDialogs={setDialogsState} />
             <div className={styles.dialogs}>
                 {dialogsState.length

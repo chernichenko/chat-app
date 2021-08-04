@@ -10,7 +10,7 @@ const getCorrectIndex = (number: number) => {
   return number
 }
 
-const generateHash = (hash: string) => {
+const generateHash = (hash: string = 'hash') => {
   const [r, g, b] = hash
     .substr(0, 3)
     .split("")

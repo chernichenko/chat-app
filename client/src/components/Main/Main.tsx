@@ -10,7 +10,7 @@ export const Main = () => {
     const isDialogView = useMemo(() => !!location.pathname.includes('dialog'), [location.pathname])
     
     return (
-        <div className={styles.wrap}>
+        <div className={styles.wrap} data-testid="main">
             <div className={cn(styles.col, styles.col1)}>
                 <Sidebar />
             </div>

@@ -12,9 +12,9 @@ import styles from './Header.module.scss'
 export const Header = () => {
     const history = useHistory()
     const dispatch = useDispatch()
-    const { token, name, avatarUrl } = useSelector(getUser)
+    const user = useSelector(getUser)
 
-    const config = useMemo(() => ({ headers: { auth: `Che ${token}` } }), [token])
+    const config = useMemo(() => ({ headers: { auth: `Che ${user?.token}` } }), [user?.token])
 
     const logoutHandler = useCallback(async (e: any) => {
         try {
@@ -29,12 +29,12 @@ export const Header = () => {
     return (
         <div className={styles.header} data-testid="header">
             <div className={styles.logo}>
-                {!!avatarUrl && (
+                {!!user?.avatarUrl && (
                     <div className={styles.imageWrap}>
-                        <img src={avatarUrl} alt="avatar" />  
+                        <img src={user?.avatarUrl} alt="avatar" data-testid="avatar" />  
                     </div>
                 )}
-                <p>{name}</p>
+                <p>{user?.name}</p>
             </div>
             <div className={styles.nav}>
                 <NavLink to="/">Dialogs</NavLink>
