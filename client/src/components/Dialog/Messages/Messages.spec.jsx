@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
 import userSlice from 'redux/reducers/userSlice'
 import { Messages } from './Messages'
-import { messagesListMock } from '../test/mocks'
+import { messagesListMock } from 'constants/tests'
 
 const configurateStore = ({ id, token, name, avatarUrl, messages, userTo }) => configureStore({
   reducer: userSlice,

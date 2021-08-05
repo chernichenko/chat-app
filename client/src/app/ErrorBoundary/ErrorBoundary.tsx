@@ -38,7 +38,7 @@ function Catch<Props extends {}>(
   }
 }
 
-const ErrorBoundary = Catch((props: Props, error?: Error, errorInfo?: React.ErrorInfo) => {
+export const ErrorBoundary = Catch((props: Props, error?: Error, errorInfo?: React.ErrorInfo) => {
   if (!error) {
     return props.children
   }
@@ -48,5 +48,3 @@ const ErrorBoundary = Catch((props: Props, error?: Error, errorInfo?: React.Erro
   
   return <h1>Report feedback</h1>
 })
-
-export default ErrorBoundary

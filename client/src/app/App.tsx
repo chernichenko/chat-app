@@ -1,8 +1,7 @@
 import { useState, useEffect, useMemo } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Switch, Route } from 'react-router-dom'
 import { publicRoutes, privateRoutes } from './routes'
-import { CONNECT_WEBSOCKET } from 'constants/socket'
 import { RouteWrapper } from 'layouts'
 import { getUser } from 'redux/selectors'
 import { useSocket } from 'hooks'
@@ -11,14 +10,9 @@ import styles from './App.module.scss'
 
 const App = () => {
   useSocket()
-  const dispatch = useDispatch()
   const { id } = useSelector(getUser)
 
   const [isPublickRoutes, setIsPublickRoutes] = useState(!id)
-
-  useEffect(() => {
-    dispatch({ type: CONNECT_WEBSOCKET })
-  }, [])
 
   useEffect(() => {
     setIsPublickRoutes(!id)
@@ -33,7 +27,7 @@ const App = () => {
   )), [])
 
   return (
-    <div className={styles.app}>
+    <div className={styles.app} data-testid="app">
       <div className={styles.container}>
         <Switch>  
           {isPublickRoutes ? publicRoutesRender : privateRoutesRender}
